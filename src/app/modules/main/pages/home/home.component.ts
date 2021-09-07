@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+
+interface Price {
+  buy: number;
+  sell: number;
+}
 
 @Component({
   selector: 'app-home',
@@ -6,11 +11,7 @@ import { Component, OnInit } from '@angular/core';
 })
 
 export class HomeComponent {
-  model = {
-    left: true,
-    middle: false,
-    right: false
-  };
+  price: Price = { buy: 179, sell: 182 };
 
   constructor() { }
 }

@@ -16,18 +16,27 @@
       </div>
       <div class="container shape-container d-flex justify-content-center align-items-center py-lg">
         <div class="card card-lift--hover shadow border-0">
-          <div class="card-body py-5">
+          <div class="card-body py-5 text-center">
             <div class="icon icon-shape icon-shape-success rounded-circle mb-4">
-              <i class="ni ni-istanbul"></i>
+              <i class="fa fa-money"></i>
             </div>
-            <h6 class="text-success text-uppercase">Build Something</h6>
-            <p class="description mt-3">Argon is a great free UI package based on Angular that includes the most important components and features.</p>
+            <div *ngIf="price as p" class="d-flex justify-content-between">
+              <div class="mr-4">
+                <h6 class="text-success text-uppercase">Buy</h6>
+                <h2>${{p.buy}}</h2>
+              </div>
+              <div class="mr-4 ml-4">
+                <h6 class="text-success text-uppercase">Mid</h6>
+                <h2>${{p.buy + ((p.sell - p.buy) / 2)|number:'1.0-2'}}</h2>
+              </div>
+              <div class="ml-4">
+                <h6 class="text-success text-uppercase">Sell</h6>
+                <h2>${{p.sell}}</h2>
+              </div>
+            </div>
             <div>
-              <span class="badge badge-pill badge-success">business</span>
-              <span class="badge badge-pill badge-success">vision</span>
-              <span class="badge badge-pill badge-success">success</span>
+              <span class="badge badge-pill badge-success">Selling</span>
             </div>
-            <a href="javascript:void(0)" class="btn btn-success mt-4">Learn more</a>
           </div>
         </div>
       </div>
