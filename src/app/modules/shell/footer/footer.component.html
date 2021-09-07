@@ -1,0 +1,42 @@
+<footer class="footer" [ngClass]="{'has-cards': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'}">
+  <div class="container">
+    <div class="row row-grid align-items-center" [ngClass]="{'my-md': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login', 'mb-5':getPath()==='/user-profile' || getPath()==='/register' || getPath()==='/login'}">
+      <div class="col-lg-6">
+        <h4 class="text-primary font-weight-light mb-0">Let's get in touch on any of these platforms.</h4>
+      </div>
+      <div class="col-lg-6 text-lg-center btn-wrapper">
+        <a target="_blank" href="https://twitter.com/chinocrespin" class="btn btn-neutral btn-icon-only btn-twitter btn-round btn-lg" ngbTooltip="Follow me">
+          <i class="fa fa-twitter"></i>
+        </a>
+        <a target="_blank" href="https://www.linkedin.com/in/rodrigocrespin/" class="btn btn-neutral btn-icon-only btn-facebook btn-round btn-lg" ngbTooltip="Connect with me">
+          <i class="fa fa-linkedin-square"></i>
+        </a>
+        <a target="_blank" href="https://rodrigocrespin.github.io/about-me/" class="btn btn-neutral btn-icon-only btn-dribbble btn-lg btn-round" ngbTooltip="About me">
+          <i class="fa fa-dribbble"></i>
+        </a>
+        <a target="_blank" href="https://github.com/rodrigocrespin" class="btn btn-neutral btn-icon-only btn-github btn-round btn-lg" ngbTooltip="Follow me on Github">
+          <i class="fa fa-github"></i>
+        </a>
+      </div>
+    </div>
+    <hr>
+    <div class="row align-items-center justify-content-md-between">
+      <div class="col-md-6">
+        <div class="copyright">
+          &copy; {{test | date: 'yyyy'}}
+          design by <a href="https://www.creative-tim.com?ref=adsa-footer" target="_blank">Creative Tim</a>.
+        </div>
+      </div>
+      <div class="col-md-6">
+        <ul class="nav nav-footer justify-content-end">
+          <li class="nav-item">
+            <a href="https://rodrigocrespin.github.io/about-me/" class="nav-link" target="_blank">About Me</a>
+          </li>
+          <li class="nav-item">
+            <a href="https://github.com/creativetimofficial/argon-design-system-angular/blob/master/LICENSE.md" class="nav-link" target="_blank">MIT License</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</footer>
