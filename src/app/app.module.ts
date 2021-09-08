@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { ShellModule } from './modules/shell/shell.module';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { AngularFireModule } from '@angular/fire';
 
 @NgModule({
   declarations: [
@@ -13,7 +15,8 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    ShellModule
+    ShellModule,
+    AngularFireModule.initializeApp(environment.firebase)
   ],
   providers: [],
   bootstrap: [AppComponent]
