@@ -34,8 +34,9 @@
                 <h2>${{p.sell}}</h2>
               </div>
             </div>
-            <div>
-              <span class="badge badge-pill badge-success">Selling</span>
+            <div *ngIf="settings$|async as settings">
+              <span *ngIf="settings.sellingEnabled" class="badge badge-pill badge-success">Selling</span>
+              <span *ngIf="!settings.sellingEnabled" class="badge badge-pill badge-danger">Not selling</span>
             </div>
           </div>
         </div>
