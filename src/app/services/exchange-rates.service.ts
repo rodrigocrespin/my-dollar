@@ -1,18 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { ExchangeRate } from '../models/exchange-rate';
+import { ExchangeRate } from 'src/app/models/exchange-rate';
+import { HttpClient } from '@angular/common/http';
+import { environment } from 'src/environments/environment';
 
 @Injectable({ providedIn: 'root' })
 export class ExchangeRatesService {
 
-  constructor(private firestore: AngularFirestore) {
+  constructor(private httpClient: HttpClient) {
   }
 
-  get(): Observable<ExchangeRate[]> {
-    return this.firestore.collection<ExchangeRate>('ExchangeRates').get().pipe(
-      map(snap => snap.docs.map(d => d.data()))
-    );
+  get(currencyId: string): Observable<ExchangeRate> {
+    return this.httpClient.get<ExchangeRate>(`${environment.apiUrl}/api/exchange-rates/${currencyId}`);
   }
 }

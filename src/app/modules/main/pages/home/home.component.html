@@ -15,7 +15,7 @@
         <span class="span-100"></span>
       </div>
       <div *ngIf="model$|async as model" class="container shape-container d-flex justify-content-center align-items-center py-lg">
-        <div *ngFor="let exchangeRate of model.exchangeRates" class="card card-lift--hover shadow border-0">
+        <div *ngIf="model.dollar as exchangeRate" class="card card-lift--hover shadow border-0">
           <div class="card-body py-5 text-center">
             <div class="icon icon-shape icon-shape-success rounded-circle mb-4">
               <i class="fa fa-money"></i>

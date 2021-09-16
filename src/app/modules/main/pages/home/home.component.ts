@@ -7,7 +7,7 @@ import { ExchangeRatesService } from 'src/app/services/exchange-rates.service';
 import { map, startWith } from 'rxjs/operators';
 
 interface HomeModel {
-  exchangeRates: ExchangeRate[];
+  dollar: ExchangeRate;
   settings: Settings;
   loading: boolean;
 }
@@ -22,10 +22,10 @@ export class HomeComponent {
 
   constructor(private settingsService: SettingsService, private exchangeRatesService: ExchangeRatesService) {
     const settings$ = this.settingsService.get();
-    const exchangeRates$ = this.exchangeRatesService.get();
+    const dollar$ = this.exchangeRatesService.get('USD');
 
-    this.model$ = combineLatest([exchangeRates$, settings$]).pipe(
-      map(([exchangeRates, settings]) => ({ exchangeRates, settings, loading: false })),
+    this.model$ = combineLatest([settings$, dollar$]).pipe(
+      map(([settings, dollar]) => ({ dollar, settings, loading: false })),
       startWith({ loading: true } as HomeModel)
     );
   }
