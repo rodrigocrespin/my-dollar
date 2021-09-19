@@ -15,31 +15,12 @@
         <span class="span-100"></span>
       </div>
       <div *ngIf="model$|async as model" class="container shape-container d-flex justify-content-center align-items-center py-lg">
-        <div *ngIf="model.dollar as exchangeRate" class="card card-lift--hover shadow border-0">
-          <div class="card-body py-5 text-center">
-            <div class="icon icon-shape icon-shape-success rounded-circle mb-4">
-              <i class="fa fa-money"></i>
-            </div>
-            <div class="d-flex justify-content-between">
-              <div class="mr-4">
-                <h6 class="text-success text-uppercase">Buy</h6>
-                <h2>${{exchangeRate.buyPrice}}</h2>
-              </div>
-              <div class="mr-4 ml-4">
-                <h6 class="text-success text-uppercase">Mid</h6>
-                <h2>${{exchangeRate.buyPrice + ((exchangeRate.sellPrice - exchangeRate.buyPrice) / 2)|number:'1.0-2'}}</h2>
-              </div>
-              <div class="ml-4">
-                <h6 class="text-success text-uppercase">Sell</h6>
-                <h2>${{exchangeRate.sellPrice}}</h2>
-              </div>
-            </div>
-            <div *ngIf="model.settings as settings">
-              <span *ngIf="settings.sellingEnabled" class="badge badge-pill badge-success">Selling</span>
-              <span *ngIf="!settings.sellingEnabled" class="badge badge-pill badge-danger">Not selling</span>
-            </div>
+        <app-exchange-rate-card currencyId="USD" [showMidPrice]="true">
+          <div *ngIf="model.settings as settings">
+            <span *ngIf="settings.sellingEnabled" class="badge badge-pill badge-success">Selling</span>
+            <span *ngIf="!settings.sellingEnabled" class="badge badge-pill badge-danger">Not selling</span>
           </div>
-        </div>
+        </app-exchange-rate-card>
       </div>
       <!-- SVG separator -->
       <div class="separator separator-bottom separator-skew zindex-100">
