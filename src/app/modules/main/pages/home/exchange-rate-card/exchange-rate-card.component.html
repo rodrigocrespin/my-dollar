@@ -1,4 +1,4 @@
-<div *ngIf="model$|async as model" class="card card-lift--hover shadow border-0">
+<div *ngIf="model$|async as model" class="card shadow border-0" [class.card-lift--hover]="liftOnHover">
   <div class="card-body py-5 text-center">
     <div class="icon icon-shape icon-shape-success rounded-circle mb-4">
       <i class="fa fa-money"></i>
@@ -19,6 +19,14 @@
         <h2 *ngIf="model.exchangeRate?.sellPrice as sellPrice">${{sellPrice}}</h2>
       </div>
     </div>
-    <ng-content></ng-content>
+    <div *ngIf="!model.loading" class="d-flex flex-wrap align-items-center justify-content-between">
+      <span class="btn btn-link" [ngbTooltip]="lastUpdateAt">
+        <i class="fa fa-info-circle"></i>
+      </span>
+      <ng-content></ng-content>
+    </div>
   </div>
+  <ng-template #lastUpdateAt>
+    {{model.exchangeRate?.updatedAt|date: 'dd/MM/yyyy HH:mm'}}
+  </ng-template>
 </div>

@@ -14,13 +14,22 @@
         <span class="span-50"></span>
         <span class="span-100"></span>
       </div>
-      <div *ngIf="model$|async as model" class="container shape-container d-flex justify-content-center align-items-center py-lg">
-        <app-exchange-rate-card currencyId="USD" [showMidPrice]="true">
-          <div *ngIf="model.settings as settings">
+      <div *ngIf="model$|async as model" class="container shape-container d-flex justify-content-center align-items-center flex-wrap py-lg">
+        <app-exchange-rate-card currencyId="USD" [showMidPrice]="true" [liftOnHover]="false">
+          <ng-container *ngIf="model.settings as settings" class="mt-1">
             <span *ngIf="settings.sellingEnabled" class="badge badge-pill badge-success">Selling</span>
             <span *ngIf="!settings.sellingEnabled" class="badge badge-pill badge-danger">Not selling</span>
-          </div>
+          </ng-container>
+          <button class="btn btn-link" [ngbTooltip]="(showHistory ? 'Hide ' : 'Show ') + 'history'"
+            (click)="showHistory = !showHistory">
+            <i class="fa fa-line-chart"></i>
+          </button>
         </app-exchange-rate-card>
+        <div *ngIf="!model.loading && showHistory" class="card shadow border-0 ml-4 mt-1">
+          <div class="card-body">
+            <app-historical-exchange-rates-chart currencyId="USD"></app-historical-exchange-rates-chart>
+          </div>
+        </div>
       </div>
       <!-- SVG separator -->
       <div class="separator separator-bottom separator-skew zindex-100">

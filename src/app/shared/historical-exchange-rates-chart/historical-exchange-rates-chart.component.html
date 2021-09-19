@@ -1,0 +1,15 @@
+<ng-container *ngIf="model$|async as model">
+  <div *ngIf="!model.loading; else loading" class="chart-area">
+    <canvas baseChart width="400" height="400"
+            [datasets]="model.lineChartData"
+            [labels]="model.lineChartLabels"
+            [options]="lineChartOptions"
+            [type]="lineChartType" [legend]="true">
+    </canvas>
+  </div>
+  <ng-template #loading>
+    <div class="d-flex justify-content-center align-items-center graph-container">
+      <div class="dot-pulse"></div>
+    </div>
+  </ng-template>
+</ng-container>

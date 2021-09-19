@@ -4,6 +4,7 @@ import { MainRoutingModule } from './main-routing.module';
 import { HomeComponent } from './pages/home/home.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ExchangeRateCardComponent } from './pages/home/exchange-rate-card/exchange-rate-card.component';
+import { SharedModule } from 'src/app/shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -13,7 +14,8 @@ import { ExchangeRateCardComponent } from './pages/home/exchange-rate-card/excha
   imports: [
     CommonModule,
     MainRoutingModule,
-    NgbModule
+    NgbModule,
+    SharedModule
   ]
 })
 export class MainModule { }

@@ -25,6 +25,7 @@ export class ExchangeRateCardComponent {
     this.currencyIdSubject.next(val);
   }
   @Input() showMidPrice?: boolean;
+  @Input() liftOnHover?: boolean;
 
   private currencyIdSubject = new BehaviorSubject<string|null>(null);
 
