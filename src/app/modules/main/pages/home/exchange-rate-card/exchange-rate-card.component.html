@@ -5,16 +5,16 @@
     </div>
     <div class="d-flex justify-content-between">
       <div class="mr-4">
-        <h6 class="text-success text-uppercase">Buy</h6>
+        <h6 class="text-success text-uppercase" translate>Buy</h6>
         <div *ngIf="model.loading" class="animated-background"></div>
         <h2 *ngIf="model.exchangeRate?.buyPrice as buyPrice">${{buyPrice}}</h2>
       </div>
       <div *ngIf="showMidPrice && model.midPrice as midPrice" class="mr-4 ml-4">
-        <h6 class="text-success text-uppercase">Mid</h6>
+        <h6 class="text-success text-uppercase" translate>Mid</h6>
         <h2>${{midPrice|number:'1.0-2'}}</h2>
       </div>
       <div class="ml-4">
-        <h6 class="text-success text-uppercase">Sell</h6>
+        <h6 class="text-success text-uppercase" translate>Sell</h6>
         <div *ngIf="model.loading" class="animated-background"></div>
         <h2 *ngIf="model.exchangeRate?.sellPrice as sellPrice">${{sellPrice}}</h2>
       </div>

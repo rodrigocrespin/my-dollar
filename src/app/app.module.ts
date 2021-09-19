@@ -6,6 +6,9 @@ import { ShellModule } from './modules/shell/shell.module';
 import { HttpClientModule } from '@angular/common/http';
 import { environment } from '../environments/environment';
 import { AngularFireModule } from '@angular/fire';
+import { TranslateModule } from '@ngx-translate/core';
+import { TRANSLATE_MODULE_CONFIG } from './i18n';
+import { LanguageService } from './services/language.service';
 
 @NgModule({
   declarations: [
@@ -16,9 +19,14 @@ import { AngularFireModule } from '@angular/fire';
     AppRoutingModule,
     HttpClientModule,
     ShellModule,
-    AngularFireModule.initializeApp(environment.firebase)
+    AngularFireModule.initializeApp(environment.firebase),
+    TranslateModule.forRoot(TRANSLATE_MODULE_CONFIG),
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {
+  constructor(private languageService: LanguageService) {
+    languageService.setDefaultLanguage();
+  }
+}

@@ -1,17 +1,23 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
+import { LanguageService } from 'src/app/services/language.service';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-nav-bar',
-  templateUrl: './nav-bar.component.html'
+  templateUrl: './nav-bar.component.html',
+  styleUrls: ['./nav-bar.component.scss']
 })
 export class NavBarComponent implements OnInit {
   public isCollapsed = true;
   private lastPoppedUrl?: string;
   private yScrollStack: number[] = [];
 
-  constructor(public location: Location, private router: Router) {
+  language$: Observable<string>;
+
+  constructor(public location: Location, private router: Router, private languageService: LanguageService) {
+    this.language$ = this.languageService.language$;
   }
 
   ngOnInit(): void {
@@ -55,5 +61,9 @@ export class NavBarComponent implements OnInit {
     else {
       return false;
     }
+  }
+
+  setLanguage(lang: string): void {
+    this.languageService.setLanguage(lang);
   }
 }

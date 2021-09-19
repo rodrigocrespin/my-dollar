@@ -17,10 +17,10 @@
       <div *ngIf="model$|async as model" class="container shape-container d-flex justify-content-center align-items-center flex-wrap py-lg">
         <app-exchange-rate-card currencyId="USD" [showMidPrice]="true" [liftOnHover]="false">
           <ng-container *ngIf="model.settings as settings" class="mt-1">
-            <span *ngIf="settings.sellingEnabled" class="badge badge-pill badge-success">Selling</span>
-            <span *ngIf="!settings.sellingEnabled" class="badge badge-pill badge-danger">Not selling</span>
+            <span *ngIf="settings.sellingEnabled" class="badge badge-pill badge-success" translate>Selling</span>
+            <span *ngIf="!settings.sellingEnabled" class="badge badge-pill badge-danger" translate>Not selling</span>
           </ng-container>
-          <button class="btn btn-link" [ngbTooltip]="(showHistory ? 'Hide ' : 'Show ') + 'history'"
+          <button class="btn btn-link" [ngbTooltip]="(showHistory ? 'Hide ' : 'Show ') + 'history'|translate"
             (click)="showHistory = !showHistory">
             <i class="fa fa-line-chart"></i>
           </button>

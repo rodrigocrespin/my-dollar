@@ -33,6 +33,7 @@
             "styles": [
               "src/styles.scss",
               "src/assets/scss/argon.scss",
+              "node_modules/flag-icon-css/css/flag-icon.min.css",
               "node_modules/three-dots/dist/three-dots.css"
             ],
             "scripts": []
