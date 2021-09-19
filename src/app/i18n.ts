@@ -10,7 +10,7 @@ import { Injectable } from '@angular/core';
 
 // don't download translations for english language
 export class DefaultTranslateHttpLoader implements TranslateLoader {
-  constructor(private http: HttpClient, public prefix: string = '/assets/i18n/', public suffix: string = '.json') { }
+  constructor(private http: HttpClient, public prefix: string = './assets/i18n/', public suffix: string = '.json') { }
 
   public getTranslation(lang: string): Observable<object> {
     if (lang === 'en') {
