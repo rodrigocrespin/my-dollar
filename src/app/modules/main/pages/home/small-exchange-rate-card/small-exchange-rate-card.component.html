@@ -1,0 +1,22 @@
+<!--https://www.creative-tim.com/bits/bootstrap/bootstrap-stats-card-argon-dashboard-->
+<div class="card card-stats">
+  <div class="card-body">
+    <div class="row">
+      <div class="col">
+        <h5 class="card-title text-uppercase text-muted mb-0">{{title}}</h5>
+        <span class="h2 font-weight-bold mb-0">{{value}}</span>
+      </div>
+      <div class="col-auto">
+        <ng-content select="[icon]"></ng-content>
+      </div>
+    </div>
+    <p class="mt-3 mb-0 text-muted text-sm">
+      <span class="mr-2"
+        [class.text-success]="variation >= 0" [class.text-danger]="variation < 0">
+        <i class="fa" [class.fa-arrow-up]="variation >= 0" [class.fa-arrow-down]="variation < 0">
+        </i> {{variation|number:'1.0-2'}}%
+      </span>
+      <span *ngIf="variationDate" class="text-nowrap">Since last month</span>
+    </p>
+  </div>
+</div>

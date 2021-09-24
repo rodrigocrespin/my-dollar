@@ -4,6 +4,7 @@ import { HistoricalExchangeRatesChartComponent } from './historical-exchange-rat
 import { NgChartsModule } from 'ng2-charts';
 import { LanguagePipe } from './language.pipe';
 import { TranslateModule } from '@ngx-translate/core';
+import { MomentModule } from 'ngx-moment';
 
 @NgModule({
   declarations: [
@@ -13,12 +14,14 @@ import { TranslateModule } from '@ngx-translate/core';
   imports: [
     CommonModule,
     NgChartsModule,
-    TranslateModule
+    TranslateModule,
+    MomentModule
   ],
   exports: [
     HistoricalExchangeRatesChartComponent,
     LanguagePipe,
-    TranslateModule
+    TranslateModule,
+    MomentModule
   ]
 })
 export class SharedModule {}

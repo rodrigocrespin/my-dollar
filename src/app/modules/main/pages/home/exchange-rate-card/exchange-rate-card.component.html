@@ -27,6 +27,6 @@
     </div>
   </div>
   <ng-template #lastUpdateAt>
-    {{model.exchangeRate?.updatedAt|date: 'dd/MM/yyyy HH:mm'}}
+    <span translate>Updated</span> {{model.exchangeRate?.updatedAt|amTimeAgo:false}}
   </ng-template>
 </div>

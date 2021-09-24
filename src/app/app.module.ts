@@ -26,7 +26,6 @@ import { LanguageService } from './services/language.service';
   bootstrap: [AppComponent]
 })
 export class AppModule {
-  constructor(private languageService: LanguageService) {
-    languageService.setDefaultLanguage();
+  constructor(private _: LanguageService) {
   }
 }
