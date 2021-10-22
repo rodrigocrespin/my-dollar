@@ -8,7 +8,7 @@
               <h6 class="card-title text-uppercase text-muted mb-0">Bitcoin</h6>
               <div *ngIf="model.loading" class="animated-background"></div>
               <ng-container *ngIf="!model.loading">
-                <span *ngIf="model.btc as btc; else rateNotAvailable" class="h2 font-weight-bold mb-0">
+                <span *ngIf="model.btc?.exchangeRate as btc; else rateNotAvailable" class="h2 font-weight-bold mb-0">
                   {{btc.buyPrice|number:'1.0-2'}} USD
                 </span>
               </ng-container>
@@ -20,8 +20,12 @@
             </div>
           </div>
           <p *ngIf="model.btc as btc" class="mt-3 mb-0 text-muted text-sm">
-            <!--<span class="mr-2 text-success"><i class="fa fa-arrow-up"></i> 3.48%</span>-->
-            <span *ngIf="btc.updatedAt as updatedAt" class="text-nowrap">
+            <span *ngIf="btc.priceChange?.percent as variation" class="mr-2"
+                  [class.text-success]="variation >= 0" [class.text-danger]="variation < 0">
+              <i class="fa" [class.fa-arrow-up]="variation >= 0" [class.fa-arrow-down]="variation < 0">
+              </i> {{variation|abs|number:'1.0-2'}}%
+            </span>
+            <span *ngIf="btc.exchangeRate?.updatedAt as updatedAt" class="text-nowrap">
               <span>{{'Updated'|translate}}</span> {{updatedAt|amTimeAgo:false}}
             </span>
           </p>
@@ -34,8 +38,8 @@
               <h6 class="card-title text-uppercase text-muted mb-0">Ethereum</h6>
               <div *ngIf="model.loading" class="animated-background"></div>
               <ng-container *ngIf="!model.loading">
-                <span *ngIf="model.eth as eth; else rateNotAvailable" class="h2 font-weight-bold mb-0">
-                  {{eth.buyPrice|number:'1.0-2'}} USD
+                <span *ngIf="model.eth?.exchangeRate as eth; else rateNotAvailable" class="h2 font-weight-bold mb-0">
+                  {{eth.buyPrice|abs|number:'1.0-2'}} USD
                 </span>
               </ng-container>
             </div>
@@ -46,8 +50,12 @@
             </div>
           </div>
           <p *ngIf="model.eth as eth" class="mt-3 mb-0 text-muted text-sm">
-            <!--<span class="mr-2 text-success"><i class="fa fa-arrow-up"></i> -1.35%</span>-->
-            <span *ngIf="eth.updatedAt as updatedAt" class="text-nowrap">
+            <span *ngIf="eth.priceChange?.percent as variation" class="mr-2"
+                  [class.text-success]="variation >= 0" [class.text-danger]="variation < 0">
+              <i class="fa" [class.fa-arrow-up]="variation >= 0" [class.fa-arrow-down]="variation < 0">
+              </i> {{variation|abs|number:'1.0-2'}}%
+            </span>
+            <span *ngIf="eth.exchangeRate?.updatedAt as updatedAt" class="text-nowrap">
               <span>{{'Updated'|translate}}</span> {{updatedAt|amTimeAgo:false}}
             </span>
           </p>
@@ -60,8 +68,8 @@
               <h6 class="card-title text-uppercase text-muted mb-0">Euro</h6>
               <div *ngIf="model.loading" class="animated-background"></div>
               <ng-container *ngIf="!model.loading">
-                <span *ngIf="model.eur as eur; else rateNotAvailable" class="h2 font-weight-bold mb-0">
-                  {{eur.buyPrice|number:'1.0-2'}} USD
+                <span *ngIf="model.eur?.exchangeRate as eur; else rateNotAvailable" class="h2 font-weight-bold mb-0">
+                  {{eur.buyPrice|abs|number:'1.0-2'}} USD
                 </span>
               </ng-container>
             </div>
@@ -72,8 +80,12 @@
             </div>
           </div>
           <p *ngIf="model.eur as eur" class="mt-3 mb-0 text-muted text-sm">
-            <!--<span class="mr-2 text-success"><i class="fa fa-arrow-up"></i> 0.01%</span>-->
-            <span *ngIf="eur.updatedAt as updatedAt" class="text-nowrap">
+            <span *ngIf="eur.priceChange?.percent as variation" class="mr-2"
+                [class.text-success]="variation >= 0" [class.text-danger]="variation < 0">
+              <i class="fa" [class.fa-arrow-up]="variation >= 0" [class.fa-arrow-down]="variation < 0">
+              </i> {{variation|number:'1.0-2'}}%
+            </span>
+            <span *ngIf="eur.exchangeRate?.updatedAt as updatedAt" class="text-nowrap">
               <span>{{'Updated'|translate}}</span> {{updatedAt|amTimeAgo:false}}
             </span>
           </p>

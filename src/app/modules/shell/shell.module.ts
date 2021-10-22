@@ -9,6 +9,7 @@ import { FooterComponent } from './footer/footer.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { MomentModule } from 'ngx-moment';
 import { TranslateModule } from '@ngx-translate/core';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -23,7 +24,8 @@ import { TranslateModule } from '@ngx-translate/core';
     RouterModule,
     NgbModule,
     MomentModule,
-    TranslateModule
+    TranslateModule,
+    SharedModule
   ]
 })
 export class ShellModule {}
