@@ -4,11 +4,13 @@ import { LanguagePipe } from './language.pipe';
 import { TranslateModule } from '@ngx-translate/core';
 import { MomentModule } from 'ngx-moment';
 import { AbsoluteNumberPipe } from './absolute-number.pipe';
+import { ExchangeRatesServiceHealthAlertComponent } from './exchange-rates-service-health-alert/exchange-rates-service-health-alert.component';
 
 @NgModule({
   declarations: [
     LanguagePipe,
-    AbsoluteNumberPipe
+    AbsoluteNumberPipe,
+    ExchangeRatesServiceHealthAlertComponent
   ],
   imports: [
     CommonModule,
@@ -19,7 +21,8 @@ import { AbsoluteNumberPipe } from './absolute-number.pipe';
     LanguagePipe,
     TranslateModule,
     MomentModule,
-    AbsoluteNumberPipe
+    AbsoluteNumberPipe,
+    ExchangeRatesServiceHealthAlertComponent
   ]
 })
 export class SharedModule {}
