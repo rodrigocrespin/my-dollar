@@ -9,7 +9,7 @@
               <div *ngIf="model.loading" class="animated-background"></div>
               <ng-container *ngIf="!model.loading">
                 <span *ngIf="model.btc?.exchangeRate as btc; else rateNotAvailable" class="h2 font-weight-bold mb-0">
-                  {{btc.buyPrice|number:'1.0-2'}} USD
+                  {{btc.buyPrice|toLocaleDecimal:'1.0-2'|async}} USD
                 </span>
               </ng-container>
             </div>
@@ -23,7 +23,7 @@
             <span *ngIf="btc.priceChange?.percent as variation" class="mr-2"
                   [class.text-success]="variation >= 0" [class.text-danger]="variation < 0">
               <i class="fa" [class.fa-arrow-up]="variation >= 0" [class.fa-arrow-down]="variation < 0">
-              </i> {{variation|abs|number:'1.0-2'}}%
+              </i> {{variation|abs|toLocaleDecimal:'1.0-2'|async}}%
             </span>
             <span *ngIf="btc.exchangeRate?.updatedAt as updatedAt" class="text-nowrap">
               <span>{{'Updated'|translate}}</span> {{updatedAt|amTimeAgo:false}}
@@ -39,7 +39,7 @@
               <div *ngIf="model.loading" class="animated-background"></div>
               <ng-container *ngIf="!model.loading">
                 <span *ngIf="model.eth?.exchangeRate as eth; else rateNotAvailable" class="h2 font-weight-bold mb-0">
-                  {{eth.buyPrice|abs|number:'1.0-2'}} USD
+                  {{eth.buyPrice|abs|toLocaleDecimal:'1.0-2'|async}} USD
                 </span>
               </ng-container>
             </div>

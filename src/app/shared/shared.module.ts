@@ -5,12 +5,14 @@ import { TranslateModule } from '@ngx-translate/core';
 import { MomentModule } from 'ngx-moment';
 import { AbsoluteNumberPipe } from './absolute-number.pipe';
 import { ExchangeRatesServiceHealthAlertComponent } from './exchange-rates-service-health-alert/exchange-rates-service-health-alert.component';
+import { ToLocaleDecimalPipe } from './to-locale-decimal.pipe';
 
 @NgModule({
   declarations: [
     LanguagePipe,
     AbsoluteNumberPipe,
-    ExchangeRatesServiceHealthAlertComponent
+    ExchangeRatesServiceHealthAlertComponent,
+    ToLocaleDecimalPipe
   ],
   imports: [
     CommonModule,
@@ -22,7 +24,8 @@ import { ExchangeRatesServiceHealthAlertComponent } from './exchange-rates-servi
     TranslateModule,
     MomentModule,
     AbsoluteNumberPipe,
-    ExchangeRatesServiceHealthAlertComponent
+    ExchangeRatesServiceHealthAlertComponent,
+    ToLocaleDecimalPipe
   ]
 })
 export class SharedModule {}
