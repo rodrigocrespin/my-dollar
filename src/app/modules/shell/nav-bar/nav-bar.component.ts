@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd, NavigationStart } from '@angular/router';
 import { Location, PopStateEvent } from '@angular/common';
-import { LanguageService } from 'src/app/services/language.service';
+import { Languages, LanguageService } from 'src/app/services/language.service';
 import { Observable } from 'rxjs';
 
 @Component({
@@ -64,6 +64,6 @@ export class NavBarComponent implements OnInit {
   }
 
   setLanguage(lang: string): void {
-    this.languageService.setLanguage(lang);
+    this.languageService.setLanguage(lang as Languages);
   }
 }

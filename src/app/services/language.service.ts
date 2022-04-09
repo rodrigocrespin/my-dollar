@@ -54,8 +54,7 @@ export class LanguageService {
     this.useLang(DEFAULT_LANGUAGE);
   }
 
-  setLanguage(lang: string): void {
-    // @ts-ignore
+  setLanguage(lang: Languages): void {
     if (!AVAILABLE_LANGUAGES.map(l => l.id).includes(lang)) {
       return;
     }
