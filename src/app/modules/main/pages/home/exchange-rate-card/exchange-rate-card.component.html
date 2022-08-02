@@ -19,6 +19,13 @@
         <h2 *ngIf="model.exchangeRate?.sellPrice as sellPrice">${{sellPrice|toLocaleDecimal:'1.0-2'|async}}</h2>
       </div>
     </div>
+    <div *ngIf="model.error as error" class="d-flex flex-wrap align-items-center justify-content-between mt-4">
+      <span *ngIf="model.error as error" class="flex-grow-1"
+        [ngbTooltip]="'There is an error in the currency source provider. Please retry again later'|translate">
+        <i class="fa fa-exclamation-circle text-danger mx-1"></i>
+        <span class="text-muted small" translate>Error detected</span>
+      </span>
+    </div>
     <div *ngIf="!model.loading" class="d-flex flex-wrap align-items-center justify-content-between">
       <span class="btn btn-link" [ngbTooltip]="lastUpdateAt">
         <i class="fa fa-info-circle"></i>

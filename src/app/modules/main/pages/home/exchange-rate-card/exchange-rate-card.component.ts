@@ -1,14 +1,16 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { ExchangeRate } from 'src/app/models/exchange-rate';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { ExchangeRatesService } from 'src/app/services/exchange-rates.service';
-import { filter, map, startWith, switchMap } from 'rxjs/operators';
+import { catchError, filter, map, startWith, switchMap } from 'rxjs/operators';
+import { HttpErrorResponse } from '@angular/common/http';
 
 interface ExchangeRateCardModel {
   currencyId: string;
   exchangeRate: ExchangeRate;
   midPrice: number;
   loading: boolean;
+  error?: { status: number, message: string };
 }
 
 @Component({
@@ -42,6 +44,10 @@ export class ExchangeRateCardComponent {
           midPrice: calculateMidPrice(exchangeRate),
           loading: false
         })),
+        catchError((res: HttpErrorResponse) => {
+          const { status, title } = res.error || {};
+          return of({ currencyId: currencyId!, error: { status, message: title }, loading: true } as ExchangeRateCardModel);
+        })
       )),
       startWith({ loading: true } as ExchangeRateCardModel)
     );

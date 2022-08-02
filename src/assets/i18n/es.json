@@ -1,11 +1,13 @@
 {
   "API seems to be unhealthy or cannot be reached. Please try again later": "Hay un error en la API. Por favor, intente nuevamente más tarde",
   "Buy": "Compra",
+  "Error detected": "Error detectado",
   "Hide history": "Ocultar histórico",
   "Mid": "Med",
   "Not selling": "Sin venta",
   "Sell": "Venta",
   "Selling": "Vendiendo",
   "Show history": "Mostrar histórico",
+  "There is an error in the currency source provider. Please retry again later": "Hay un error con el proveedor de cotizaciones. Intente nuevamente más tarde",
   "Updated": "Actualizado"
 }
