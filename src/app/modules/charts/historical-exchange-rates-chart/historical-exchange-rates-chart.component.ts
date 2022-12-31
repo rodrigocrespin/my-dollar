@@ -5,6 +5,7 @@ import { filter, map, startWith, switchMap } from 'rxjs/operators';
 import { HistoricalExchangeRate } from 'src/app/models/exchange-rate';
 import { ChartType } from 'chart.js';
 import { DatePipe } from '@angular/common';
+import { TranslatePipe } from '@ngx-translate/core';
 
 interface HistoricalExchangeRatesModel {
   items: HistoricalExchangeRate[];
@@ -18,7 +19,7 @@ interface HistoricalExchangeRatesModel {
   templateUrl: './historical-exchange-rates-chart.component.html',
   styleUrls: ['./historical-exchange-rates-chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  providers: [DatePipe]
+  providers: [DatePipe, TranslatePipe]
 })
 
 export class HistoricalExchangeRatesChartComponent {
@@ -64,7 +65,9 @@ export class HistoricalExchangeRatesChartComponent {
 
   private currencyIdSubject = new BehaviorSubject<string|null>(null);
 
-  constructor(private exchangeRatesService: ExchangeRatesService, private datePipe: DatePipe) {
+  constructor(private exchangeRatesService: ExchangeRatesService,
+              private datePipe: DatePipe,
+              private translatePipe: TranslatePipe) {
     // https://github.com/valor-software/ng2-charts
     // https://valor-software.com/ng2-charts/#/LineChart
     this.model$ = this.currencyIdSubject.pipe(
@@ -73,8 +76,8 @@ export class HistoricalExchangeRatesChartComponent {
       map(items => ({ loading: false, items })),
       map(model => ({
         ...model,
-        lineChartData: [{ data: model.items.map(item => item.value), label: 'Price' }],
-        lineChartLabels: model.items.map(item => this.datePipe.transform(item.date, 'MMMM yyyy'))
+        lineChartData: [{ data: model.items.map(item => item.value), label: this.translatePipe.transform('Price') }],
+        lineChartLabels: model.items.map(item => this.datePipe.transform(item.date, 'dd MMM yyyy'))
       })),
       startWith({ loading: true, items: [], lineChartData: [], lineChartLabels: [] })
     );
