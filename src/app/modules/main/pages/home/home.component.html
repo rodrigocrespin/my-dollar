@@ -16,9 +16,18 @@
       </div>
       <div *ngIf="model$|async as model" class="container shape-container d-flex justify-content-center align-items-center flex-wrap py-lg">
         <app-exchange-rate-card currencyId="USD" [showMidPrice]="true" [liftOnHover]="false">
-          <ng-container *ngIf="model.settings as settings" class="mt-1">
+          <!--<ng-container *ngIf="model.settings as settings" class="mt-1">
             <span *ngIf="settings.sellingEnabled" class="badge badge-pill badge-success" translate>Selling</span>
             <span *ngIf="!settings.sellingEnabled" class="badge badge-pill badge-danger" translate>Not selling</span>
+          </ng-container>-->
+          <ng-container *ngIf="usdPriceChange$ | async as usdPriceChange">
+            <ng-container *ngIf="!usdPriceChange.loading && usdPriceChange.priceChange as priceChange" class="mt-1">
+              <span *ngIf="priceChange.percent as variation" class="badge badge-pill"
+                [class.badge-success]="variation >= 0" [class.badge-danger]="variation < 0">
+                <i class="fa" [class.fa-arrow-up]="variation >= 0" [class.fa-arrow-down]="variation < 0">
+                </i> {{variation|abs|toLocaleDecimal:'1.0-2'|async}}%
+              </span>
+            </ng-container>
           </ng-container>
           <button class="btn btn-link" [ngbTooltip]="(showHistory ? 'Hide ' : 'Show ') + 'history'|translate"
             (click)="showHistory = !showHistory">
