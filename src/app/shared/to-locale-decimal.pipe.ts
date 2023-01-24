@@ -1,6 +1,6 @@
 import { Inject, LOCALE_ID, Pipe, PipeTransform } from '@angular/core';
 import { LanguageService } from '../services/language.service';
-import { first, map } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 import { DecimalPipe } from '@angular/common';
 
@@ -19,8 +19,7 @@ export class ToLocaleDecimalPipe implements PipeTransform {
   transform(value: number | string, digitsInfo?: string): Observable<string|null> {
     return this.languageService.language$.pipe(
       map(lang => LOCALE_PER_LANG[lang] || 'en-US'),
-      map(locale => new DecimalPipe(this.localeId).transform(value, digitsInfo, locale)),
-      first()
+      map(locale => new DecimalPipe(this.localeId).transform(value, digitsInfo, locale))
     );
   }
 }

@@ -53,7 +53,7 @@
             <span *ngIf="eth.priceChange?.percent as variation" class="mr-2"
                   [class.text-success]="variation >= 0" [class.text-danger]="variation < 0">
               <i class="fa" [class.fa-arrow-up]="variation >= 0" [class.fa-arrow-down]="variation < 0">
-              </i> {{variation|abs|number:'1.0-2'}}%
+              </i> {{variation|abs|toLocaleDecimal:'1.0-2'|async}}%
             </span>
             <span *ngIf="eth.exchangeRate?.updatedAt as updatedAt" class="text-nowrap">
               <span>{{'Updated'|translate}}</span> {{updatedAt|amTimeAgo:false}}
@@ -69,7 +69,7 @@
               <div *ngIf="model.loading" class="animated-background"></div>
               <ng-container *ngIf="!model.loading">
                 <span *ngIf="model.eur?.exchangeRate as eur; else rateNotAvailable" class="h2 font-weight-bold mb-0">
-                  {{eur.buyPrice|abs|number:'1.0-2'}} USD
+                  {{eur.buyPrice|abs|toLocaleDecimal:'1.0-2'|async}} USD
                 </span>
               </ng-container>
             </div>
@@ -83,7 +83,7 @@
             <span *ngIf="eur.priceChange?.percent as variation" class="mr-2"
                 [class.text-success]="variation >= 0" [class.text-danger]="variation < 0">
               <i class="fa" [class.fa-arrow-up]="variation >= 0" [class.fa-arrow-down]="variation < 0">
-              </i> {{variation|number:'1.0-2'}}%
+              </i> {{variation|toLocaleDecimal:'1.0-2'|async}}%
             </span>
             <span *ngIf="eur.exchangeRate?.updatedAt as updatedAt" class="text-nowrap">
               <span>{{'Updated'|translate}}</span> {{updatedAt|amTimeAgo:false}}
