@@ -22,10 +22,15 @@
           </ng-container>-->
           <ng-container *ngIf="usdPriceChange$ | async as usdPriceChange">
             <ng-container *ngIf="!usdPriceChange.loading && usdPriceChange.priceChange as priceChange" class="mt-1">
-              <span *ngIf="priceChange.percent as variation" class="badge badge-pill"
-                [class.badge-success]="variation >= 0" [class.badge-danger]="variation < 0">
-                <i class="fa" [class.fa-arrow-up]="variation >= 0" [class.fa-arrow-down]="variation < 0">
-                </i> {{variation|abs|toLocaleDecimal:'1.0-2'|async}}%
+              <span *ngIf="{ variation: priceChange.percent } as pc" class="badge badge-pill"
+                [class.badge-success]="pc.variation > 0"
+                [class.badge-danger]="pc.variation < 0"
+                [class.badge-primary]="pc.variation === 0">
+                <i class="fa"
+                  [class.fa-arrow-up]="pc.variation > 0"
+                  [class.fa-arrow-down]="pc.variation < 0"
+                  [class.fa-minus]="pc.variation === 0">
+                </i> {{pc.variation|abs|toLocaleDecimal:'1.0-2'|async}}%
               </span>
             </ng-container>
           </ng-container>
