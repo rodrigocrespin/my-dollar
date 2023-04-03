@@ -1,5 +1,6 @@
 # My Dollar
 ![version](https://img.shields.io/badge/version-1.0.0-blue.svg)
+[![CD](https://github.com/rodrigocrespin/my-dollar/actions/workflows/cd.yml/badge.svg?branch=master)](https://github.com/rodrigocrespin/my-dollar/actions/workflows/cd.yml)
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.1.
 
