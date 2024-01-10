@@ -14,7 +14,7 @@
 	@return map-get($shapes-default-colors, $key);
 }
 
-@function lines-light-color($key: "step-1-gradient-bg") {
+@function shapes-light-color($key: "step-1-gradient-bg") {
 	@return map-get($shapes-light-colors, $key);
 }
 
