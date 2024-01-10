@@ -1,7 +1,7 @@
 <footer class="footer" [ngClass]="{'has-cards': getPath()!=='/user-profile' && getPath()!=='/register' && getPath()!=='/login'}">
   <div class="container">
-    <div *ngIf="model$|async as model" class="d-flex justify-content-between flex-wrap align-items-center">
-      <div class="card card-lift--hover mt-1">
+    <div *ngIf="model$|async as model" class="d-flex flex-wrap align-items-center">
+      <div class="card card-lift--hover m-1 flex-fill">
         <div class="card-body">
           <div class="row">
             <div class="col">
@@ -31,7 +31,7 @@
           </p>
         </div>
       </div>
-      <div class="card card-lift--hover mt-1">
+      <div class="card card-lift--hover m-1 flex-fill">
         <div class="card-body">
           <div class="row">
             <div class="col">
@@ -61,7 +61,7 @@
           </p>
         </div>
       </div>
-      <div class="card card-lift--hover mt-1">
+      <div class="card card-lift--hover m-1 flex-fill">
         <div class="card-body">
           <div class="row">
             <div class="col">
