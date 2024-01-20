@@ -21,7 +21,7 @@ export class ExchangeRatesService {
   }
 
   isHealthy(): Observable<boolean> {
-    return this.httpClient.get<any>(`${environment.apiUrl}/health/live`).pipe(
+    return this.httpClient.get<any>(`${environment.apiUrl}/api/health`).pipe(
       mapTo(true),
       catchError((e: HttpErrorResponse) => of(e.status === 200))
     );

@@ -5,7 +5,7 @@ import { firebase } from './firebase.environment';
 
 export const environment = {
   production: false,
-  apiUrl: 'https://currency-exchange-rates-api.azurewebsites.net',
+  apiUrl: 'https://currency-exchange-rates.azurewebsites.net',
   ...firebase
 };
 
