@@ -6,7 +6,7 @@ const targetPath = './src/environments/environment.prod.ts';
 
 const envConfigFile = `export const environment = {
    production: true,
-   apiUrl: 'https://currency-exchange-rates-api.azurewebsites.net',
+   apiUrl: 'https://currency-exchange-rates.azurewebsites.net',
    firebase: {
       apiKey: '${process.env.FIREBASE_API_KEY}',
       authDomain: 'my-dollar-a4115.firebaseapp.com',
