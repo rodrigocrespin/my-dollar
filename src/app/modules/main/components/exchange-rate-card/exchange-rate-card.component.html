@@ -1,0 +1,40 @@
+<div *ngIf="model$|async as model" class="max-w-[85rem] mx-auto py-24 space-y-8">
+  <div class="max-w-[50rem] flex flex-col bg-slate-900 border border-teal-700 shadow-sm rounded-xl shadow-slate-700/[.7]">
+    <div class="p-4 md:p-7">
+      <div class="flex justify-center">
+        <div class="h-14 w-14 flex justify-center items-center rounded-full border border-teal-500">
+          <div class="text-lg font-bold text-teal-500">
+            U$S
+          </div>
+        </div>
+      </div>
+      <div class="flex justify-between mt-8 gap-8 sm:gap-12">
+        <div class="flex flex-col gap-2 justify-center items-center">
+          <p class="text-teal-500" translate>Buy</p>
+          <h3 *ngIf="model.exchangeRate?.buyPrice as buyPrice" class="text-2xl font-bold text-teal-400">
+            ${{ buyPrice | toLocaleDecimal:'1.0-0' | async }}
+          </h3>
+        </div>
+        <div class="flex flex-col gap-2 justify-center items-center text-teal-400">
+          <p class="text-teal-500" translate>Mid</p>
+          <h3 *ngIf="showMidPrice && model.midPrice as midPrice" class="text-2xl font-bold text-teal-400">
+            ${{ midPrice | toLocaleDecimal:'1.0-0' | async }}
+          </h3>
+        </div>
+        <div class="flex flex-col gap-2 justify-center items-center text-teal-400">
+          <p class="text-teal-500" translate>Sell</p>
+          <h3 *ngIf="model.exchangeRate?.sellPrice as sellPrice" class="text-2xl font-bold text-teal-400">
+            ${{ sellPrice | toLocaleDecimal:'1.0-0' | async }}
+          </h3>
+        </div>
+      </div>
+      <div *ngIf="model.priceChange as pc" class="flex justify-center items-center mt-2">
+        <p *ngIf="pc.percent as variation" class="mt-1 text-gray-400 font-medium flex items-center gap-0.5" [class.text-green-500]="variation > 0" [class.text-red-500]="variation < 0">
+          <i *ngIf="variation > 0" class='ti ti-trending-up'></i>
+          <i *ngIf="variation < 0" class='ti ti-trending-down'></i>
+          <span>{{ variation | abs | toLocaleDecimal:'1.0-2' | async }}%</span>
+        </p>
+      </div>
+    </div>
+  </div>
+</div>

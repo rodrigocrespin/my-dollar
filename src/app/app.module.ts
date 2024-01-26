@@ -1,11 +1,10 @@
 import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { ShellModule } from './modules/shell/shell.module';
+import { LayoutModule } from './layout/layout.module';
 import { HttpClientModule } from '@angular/common/http';
-import { environment } from '../environments/environment';
-import { AngularFireModule } from '@angular/fire';
 import { TranslateModule } from '@ngx-translate/core';
 import { TRANSLATE_MODULE_CONFIG } from './i18n';
 import { LanguageService } from './services/language.service';
@@ -20,12 +19,11 @@ registerLocaleData(localeAr);
   imports: [
     BrowserModule,
     AppRoutingModule,
+    LayoutModule,
     HttpClientModule,
-    ShellModule,
-    AngularFireModule.initializeApp(environment.firebase),
     TranslateModule.forRoot(TRANSLATE_MODULE_CONFIG),
   ],
-  providers: [{ provide: LOCALE_ID, useValue: 'es-AR'}],
+  providers: [{ provide: LOCALE_ID, useValue: 'es-AR' }],
   bootstrap: [AppComponent]
 })
 export class AppModule {
