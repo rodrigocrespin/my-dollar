@@ -11,22 +11,34 @@
       <div class="flex justify-between mt-8 gap-8 sm:gap-12">
         <div class="flex flex-col gap-2 justify-center items-center">
           <p class="text-teal-500" translate>Buy</p>
+          <div *ngIf="model.loading" class="animate-pulse w-full">
+            <div class="h-4 w-14 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+          </div>
           <h3 *ngIf="model.exchangeRate?.buyPrice as buyPrice" class="text-2xl font-bold text-teal-400">
             ${{ buyPrice | toLocaleDecimal:'1.0-0' | async }}
           </h3>
         </div>
         <div class="flex flex-col gap-2 justify-center items-center text-teal-400">
           <p class="text-teal-500" translate>Mid</p>
+          <div *ngIf="model.loading" class="animate-pulse w-full">
+            <div class="h-4 w-14 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+          </div>
           <h3 *ngIf="showMidPrice && model.midPrice as midPrice" class="text-2xl font-bold text-teal-400">
             ${{ midPrice | toLocaleDecimal:'1.0-0' | async }}
           </h3>
         </div>
         <div class="flex flex-col gap-2 justify-center items-center text-teal-400">
           <p class="text-teal-500" translate>Sell</p>
+          <div *ngIf="model.loading" class="animate-pulse w-full">
+            <div class="h-4 w-14 bg-gray-200 rounded-full dark:bg-gray-700"></div>
+          </div>
           <h3 *ngIf="model.exchangeRate?.sellPrice as sellPrice" class="text-2xl font-bold text-teal-400">
             ${{ sellPrice | toLocaleDecimal:'1.0-0' | async }}
           </h3>
         </div>
+      </div>
+      <div *ngIf="model.loading" class="animate-pulse w-full mt-2">
+        <div class="h-4 w-full bg-gray-200 rounded-full dark:bg-gray-700"></div>
       </div>
       <div *ngIf="model.priceChange as pc" class="flex justify-center items-center mt-2">
         <p *ngIf="pc.percent as variation" class="mt-1 text-gray-400 font-medium flex items-center gap-0.5" [class.text-green-500]="variation > 0" [class.text-red-500]="variation < 0">
