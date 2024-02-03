@@ -28,7 +28,7 @@ export function DefaultTranslateHttpLoaderFactory(http: HttpClient): TranslateLo
 // use single brackets { instead of double {{ for translations parameters interpolation
 @Injectable()
 export class InterpolatedTranslateParser extends TranslateDefaultParser {
-  public templateMatcher: RegExp = /{\s?([^{}\s]*)\s?}/g;
+  public override templateMatcher: RegExp = /{\s?([^{}\s]*)\s?}/g;
 }
 
 // add [MISSING] text to missing translations

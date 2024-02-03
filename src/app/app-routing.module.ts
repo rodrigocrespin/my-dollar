@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AppContainerComponent } from './modules/shell/app-container/app-container.component';
+import { AppContainerComponent } from './layout/app-container/app-container.component';
 
 const routes: Routes = [
   {
@@ -9,10 +9,10 @@ const routes: Routes = [
     children: [
       {
         path: '',
-        loadChildren: () => import('./modules/main/main.module').then(mod => mod.MainModule)
-      }
-    ]
-  }
+        loadChildren: () => import('./modules/main/main.module').then((mod) => mod.MainModule),
+      },
+    ],
+  },
 ];
 
 @NgModule({

@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import { Observable } from 'rxjs';
 import { map, shareReplay, startWith } from 'rxjs/operators';
-import * as moment from 'moment';
+import { Settings } from 'luxon';
 
 export enum Languages {
   English = 'en',
@@ -47,7 +47,7 @@ export class LanguageService {
     this.translateService.currentLang = lang;
 
     const dateTimeLang = DATETIME_LANGUAGES[lang];
-    moment.locale(dateTimeLang);
+    Settings.defaultLocale = dateTimeLang;
   }
 
   setDefaultLanguage(): void {
