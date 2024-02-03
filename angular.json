@@ -33,7 +33,9 @@
               "src/styles.scss",
               "@tabler/icons-webfont/tabler-icons.scss"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/preline/preline.js"
+            ]
           },
           "configurations": {
             "production": {
