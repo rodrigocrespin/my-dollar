@@ -1,3 +1,4 @@
-<div class="flex justify-center">
-  <app-exchange-rate-card currencyId="USD" [showMidPrice]="true"></app-exchange-rate-card>
+<div class="flex justify-center gap-6 flex-wrap">
+  <app-exchange-rate-card class="py-2 space-y-2" currencyId="USD" [showMidPrice]="true"></app-exchange-rate-card>
+  <app-historical-exchange-rates-chart class="py-2 space-y-2" currencyId="USD"></app-historical-exchange-rates-chart>
 </div>

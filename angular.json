@@ -34,7 +34,8 @@
               "@tabler/icons-webfont/tabler-icons.scss"
             ],
             "scripts": [
-              "node_modules/preline/preline.js"
+              "node_modules/preline/preline.js",
+              "node_modules/apexcharts/dist/apexcharts.min.js"
             ]
           },
           "configurations": {

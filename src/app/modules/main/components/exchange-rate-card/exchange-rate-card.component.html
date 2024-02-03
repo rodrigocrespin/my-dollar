@@ -1,4 +1,4 @@
-<div *ngIf="model$|async as model" class="max-w-[85rem] mx-auto py-24 space-y-8">
+<div *ngIf="model$|async as model" class="max-w-[85rem] mx-auto">
   <div class="max-w-[50rem] flex flex-col bg-slate-900 border border-teal-700 shadow-sm rounded-xl shadow-slate-700/[.7]">
     <div class="p-4 md:p-7">
       <div class="flex justify-center">
@@ -18,12 +18,12 @@
             ${{ buyPrice | toLocaleDecimal:'1.0-0' | async }}
           </h3>
         </div>
-        <div class="flex flex-col gap-2 justify-center items-center text-teal-400">
-          <p class="text-teal-500" translate>Mid</p>
+        <div class="flex flex-col gap-2 justify-center items-center text-teal-200">
+          <p class="text-inherit" translate>Mid</p>
           <div *ngIf="model.loading" class="animate-pulse w-full">
             <div class="h-4 w-14 bg-gray-200 rounded-full dark:bg-gray-700"></div>
           </div>
-          <h3 *ngIf="showMidPrice && model.midPrice as midPrice" class="text-2xl font-bold text-teal-400">
+          <h3 *ngIf="showMidPrice && model.midPrice as midPrice" class="text-2xl font-bold text-inherit">
             ${{ midPrice | toLocaleDecimal:'1.0-0' | async }}
           </h3>
         </div>
