@@ -1,5 +1,6 @@
 <div *ngIf="model$|async as model" class="max-w-[85rem] mx-auto">
-  <div class="max-w-[50rem] flex flex-col bg-slate-900 border border-primary-700 shadow-sm rounded-xl shadow-slate-700/[.7]">
+  <!-- Card -->
+  <div class="max-w-[50rem] min-w-[20rem] sm:min-w-[22rem] min-h-[16rem] flex flex-col bg-slate-900 border border-primary-700 shadow-sm rounded-xl shadow-slate-700/[.7]">
     <div class="p-4 md:p-5">
       <div class="flex justify-center">
         <div class="h-14 w-14 flex justify-center items-center rounded-full border border-primary-500">
@@ -37,9 +38,6 @@
           </h3>
         </div>
       </div>
-      <div *ngIf="model.loading" class="animate-pulse w-full mt-2">
-        <div class="h-4 w-full bg-gray-200 rounded-full dark:bg-gray-700"></div>
-      </div>
       <div *ngIf="model.priceChange as pc" class="flex justify-center items-center mt-2">
         <p *ngIf="pc.percent as variation" class="mt-1 text-gray-400 font-medium flex items-center gap-0.5" [class.text-green-500]="variation > 0" [class.text-red-500]="variation < 0">
           <i *ngIf="variation > 0" class='ti ti-trending-up'></i>
@@ -50,6 +48,12 @@
       <p *ngIf="model.exchangeRate?.updatedAt as updatedAt" class="text-xs text-center mt-2 text-gray-600" [title]="updatedAt | dateTimeFromIso | dateTimeToFormat: 'F'">
         <span translate>Updated</span> {{ updatedAt | dateTimeFromIso | dateTimeToRelative }}
       </p>
+      <div *ngIf="model.loading" class="animate-pulse w-full mt-2 flex flex-col gap-2">
+        <div class="h-4 w-full bg-gray-200 rounded-full dark:bg-gray-700"></div>
+        <div class="h-4 w-full bg-gray-200 rounded-full dark:bg-gray-700"></div>
+        <div class="h-4 w-full bg-gray-200 rounded-full dark:bg-gray-700"></div>
+      </div>
     </div>
   </div>
+  <!-- End Card -->
 </div>

@@ -1,6 +1,6 @@
-<!-- Card -->
 <div *ngIf="model$ | async as model" class="max-w-[85rem] min-w-[20rem] md:min-w-[30rem] h-full mx-auto">
-  <div class="h-full min-h-[20rem] md:min-h-[10rem] min-w-[20rem] md:min-w-[30rem] w-full flex flex-col bg-slate-900 border border-primary-700 shadow-sm rounded-xl shadow-slate-700/[.7]">
+  <!-- Card -->
+  <div class="h-full min-h-[20rem] md:min-h-[16rem] min-w-[20rem] md:min-w-[30rem] w-full flex flex-col bg-slate-900 border border-primary-700 shadow-sm rounded-xl shadow-slate-700/[.7]">
     <apx-chart *ngIf="model.chartOptions as options" class="h-full"
       [series]="options.series"
       [chart]="options.chart"
@@ -19,5 +19,5 @@
       <span translate>Last</span> {{ dataFrom | durationToFormat: 'M' }} <span translate>months</span>
     </p>
   </div>
+  <!-- End Card -->
 </div>
-<!-- End Card -->
