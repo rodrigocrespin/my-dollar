@@ -15,6 +15,7 @@ import { filter, startWith, switchMap } from 'rxjs/operators';
 import { HistoricalExchangeRate } from '../../../../models/exchange-rate';
 import { ExchangeRatesService } from '../../../../services/exchange-rates.service';
 import { TranslatePipe } from '@ngx-translate/core';
+import { DateTime } from 'luxon';
 
 interface ChartOptionsModel {
   series: ApexAxisChartSeries;
@@ -41,6 +42,7 @@ interface HistoricalExchangeRatesModel {
 })
 export class HistoricalExchangeRatesChartComponent {
   model$: Observable<HistoricalExchangeRatesModel>;
+  dataFrom = DateTime.utc().diff(DateTime.utc().minus({ month: 3 }));
 
   @Input() set currencyId(val: string) {
     this.currencyIdSubject.next(val);

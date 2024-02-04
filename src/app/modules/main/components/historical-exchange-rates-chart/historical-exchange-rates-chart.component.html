@@ -15,6 +15,9 @@
     <div *ngIf="model.loading" class="h-full animate-pulse bg-gray-200 dark:bg-gray-700 border shadow-sm rounded-xl dark:border-gray-700 dark:shadow-slate-700/[.7]">
       <span class="sr-only">Loading...</span>
     </div>
+    <p *ngIf="!model.loading" class="text-xs text-center mt-2 mb-4 text-gray-600">
+      <span translate>Last</span> {{ dataFrom | durationToFormat: 'M' }} <span translate>months</span>
+    </p>
   </div>
 </div>
 <!-- End Card -->

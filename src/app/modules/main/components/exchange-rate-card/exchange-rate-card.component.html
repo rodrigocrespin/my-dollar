@@ -48,7 +48,7 @@
         </p>
       </div>
       <p *ngIf="model.exchangeRate?.updatedAt as updatedAt" class="text-xs text-center mt-2 text-gray-600" [title]="updatedAt | dateTimeFromIso | dateTimeToFormat: 'F'">
-        <span translate>Updated</span> {{ updatedAt | dateTimeFromIso | toRelative }}
+        <span translate>Updated</span> {{ updatedAt | dateTimeFromIso | dateTimeToRelative }}
       </p>
     </div>
   </div>

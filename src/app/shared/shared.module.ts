@@ -6,7 +6,6 @@ import { LuxonModule } from 'luxon-angular';
 import { AbsoluteNumberPipe } from './absolute-number.pipe';
 import { ExchangeRatesServiceHealthAlertComponent } from './exchange-rates-service-health-alert/exchange-rates-service-health-alert.component';
 import { ToLocaleDecimalPipe } from './to-locale-decimal.pipe';
-import { ToRelativePipe } from './to-relative.pipe';
 
 @NgModule({
   declarations: [
@@ -14,7 +13,6 @@ import { ToRelativePipe } from './to-relative.pipe';
     AbsoluteNumberPipe,
     ExchangeRatesServiceHealthAlertComponent,
     ToLocaleDecimalPipe,
-    ToRelativePipe,
   ],
   imports: [
     CommonModule,
@@ -28,7 +26,6 @@ import { ToRelativePipe } from './to-relative.pipe';
     AbsoluteNumberPipe,
     ExchangeRatesServiceHealthAlertComponent,
     ToLocaleDecimalPipe,
-    ToRelativePipe,
   ]
 })
 export class SharedModule {}
