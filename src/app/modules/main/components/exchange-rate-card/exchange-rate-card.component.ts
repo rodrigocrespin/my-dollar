@@ -11,7 +11,7 @@ interface ExchangeRateCardModel {
   currencyId: string;
   exchangeRate: ExchangeRate;
   midPrice: number;
-  priceChange: PriceChange;
+  priceChange?: PriceChange;
   loading: boolean;
   error?: { status: number, message: string };
 }
@@ -31,6 +31,7 @@ export class ExchangeRateCardComponent {
   }
   @Input() showMidPrice?: boolean;
   @Input() liftOnHover?: boolean;
+  @Input() label = '$';
 
   private currencyIdSubject = new BehaviorSubject<string|null>(null);
 
@@ -39,9 +40,15 @@ export class ExchangeRateCardComponent {
     const calculateMidPrice = (exchangeRate: ExchangeRate): number => {
       return exchangeRate.buyPrice + ((exchangeRate.sellPrice - exchangeRate.buyPrice) / 2);
     };
+
+    const exchangeRate$ = (currencyId: string) => this.exchangeRatesService.get(currencyId);
+    const priceChange$ = (currencyId: string) => this.priceChangesService.get(currencyId).pipe(
+      catchError((_: HttpErrorResponse) => of(undefined))
+    );
+
     this.model$ = this.currencyIdSubject.pipe(
       filter(id => !!id),
-      switchMap(currencyId => combineLatest([this.exchangeRatesService.get(currencyId!), this.priceChangesService.get(currencyId!)]).pipe(
+      switchMap(currencyId => combineLatest([exchangeRate$(currencyId!), priceChange$(currencyId!)]).pipe(
         map(([exchangeRate, priceChange]) => ({
           currencyId: currencyId!,
           exchangeRate,
