@@ -59,7 +59,7 @@ export class HistoricalExchangeRatesChartComponent {
             {
               name: this.translatePipe.transform('Price'),
               data: items.map(x => x.value),
-              color: '#13B8A6'
+              color: '#63eec9'
             }
           ] as ApexAxisChartSeries,
           chart: {
