@@ -9,7 +9,7 @@ import {
   ApexXAxis,
   ApexYAxis
 } from 'ng-apexcharts';
-import { BehaviorSubject, map, Observable } from 'rxjs';
+import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { LanguageService } from '../../../../services/language.service';
 import { filter, startWith, switchMap } from 'rxjs/operators';
 import { HistoricalExchangeRate } from '../../../../models/exchange-rate';
@@ -34,6 +34,21 @@ interface HistoricalExchangeRatesModel {
   loading: boolean;
 }
 
+interface ChartExchangeRate {
+  buy: number;
+  mid: number;
+  sell: number;
+  date: string;
+}
+
+type RateKey = 'buy' | 'sell' | 'mid';
+const DEFAULT_RATE_KEY: RateKey = 'mid';
+const RATE_LABEL = {
+  buy: 'Buy',
+  mid: 'Mid',
+  sell: 'Sell'
+};
+
 @Component({
   selector: 'app-historical-exchange-rates-chart',
   templateUrl: './historical-exchange-rates-chart.component.html',
@@ -49,18 +64,19 @@ export class HistoricalExchangeRatesChartComponent {
   }
 
   private currencyIdSubject = new BehaviorSubject<string|null>(null);
+  private selectedRateSubject = new BehaviorSubject<RateKey>(DEFAULT_RATE_KEY);
 
   constructor(languageService: LanguageService,
               private exchangeRatesService: ExchangeRatesService,
               private translatePipe: TranslatePipe) {
     const lang$ = languageService.language$;
-    const chartOptions$ = (items: HistoricalExchangeRate[]) => lang$.pipe(
-      map((lang) => {
+    const chartOptions$ = (items: ChartExchangeRate[]) => combineLatest([lang$, this.selectedRateSubject]).pipe(
+      map(([lang, rateKey]) => {
         return {
           series: [
             {
-              name: this.translatePipe.transform('Price'),
-              data: items.map(x => x.value),
+              name: this.translatePipe.transform(RATE_LABEL[rateKey] || 'Price'),
+              data: items.map(x => (x as any)[rateKey]),
               color: '#63eec9'
             }
           ] as ApexAxisChartSeries,
@@ -158,13 +174,23 @@ export class HistoricalExchangeRatesChartComponent {
       })
     );
 
+    const calculateMidPrice = (exchangeRate: HistoricalExchangeRate): number => {
+      return exchangeRate.buyPrice + ((exchangeRate.sellPrice - exchangeRate.buyPrice) / 2);
+    };
+
     this.model$ = this.currencyIdSubject.pipe(
       filter(id => !!id),
-      switchMap(currencyId => this.exchangeRatesService.getHistorical(currencyId!)),
+      switchMap(currencyId => this.exchangeRatesService.getHistorical(currencyId!).pipe(
+        map(items => items.map(x => ({ buy: x.buyPrice, sell: x.sellPrice, mid: calculateMidPrice(x), date: x.date })))
+      )),
       switchMap(items => chartOptions$(items)),
       map(chartOptions => ({ loading: false, chartOptions })),
       startWith({ loading: true })
     );
+  }
+
+  selectChange(obj: HTMLSelectElement) {
+    this.selectedRateSubject.next((obj.value as RateKey) || DEFAULT_RATE_KEY);
   }
 }
 

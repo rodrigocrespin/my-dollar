@@ -6,6 +6,7 @@ export interface ExchangeRate {
 }
 
 export interface HistoricalExchangeRate {
-  value: number;
+  buyPrice: number;
+  sellPrice: number;
   date: string;
 }

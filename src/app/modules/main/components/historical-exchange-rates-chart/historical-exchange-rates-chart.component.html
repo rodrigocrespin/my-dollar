@@ -1,6 +1,13 @@
 <div *ngIf="model$ | async as model" class="max-w-[85rem] min-w-[20rem] md:min-w-[30rem] h-full mx-auto">
   <!-- Card -->
   <div class="h-full min-h-[20rem] md:min-h-[16rem] min-w-[20rem] md:min-w-[30rem] w-full flex flex-col bg-slate-900 border border-primary-700 shadow-sm rounded-xl shadow-slate-700/[.7]">
+    <div class="flex justify-end mt-2 mr-2">
+      <select class="py-2 px-3 pe-9 block border-gray-200 rounded-lg text-xs focus:border-teal-500 focus:ring-teal-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600" (change)="selectChange(select)" #select>
+        <option translate value="buy">Buy</option>
+        <option translate value="mid" selected>Mid</option>
+        <option translate value="sell">Sell</option>
+      </select>
+    </div>
     <apx-chart *ngIf="model.chartOptions as options" class="h-full"
       [series]="options.series"
       [chart]="options.chart"
