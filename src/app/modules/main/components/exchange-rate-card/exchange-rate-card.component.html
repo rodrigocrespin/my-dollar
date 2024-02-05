@@ -39,10 +39,10 @@
         </div>
       </div>
       <div *ngIf="model.priceChange as pc" class="flex justify-center items-center mt-2">
-        <p *ngIf="pc.percent as variation" class="mt-1 text-gray-400 font-medium flex items-center gap-0.5" [class.text-green-500]="variation > 0" [class.text-red-500]="variation < 0">
-          <i *ngIf="variation > 0" class='ti ti-trending-up'></i>
-          <i *ngIf="variation < 0" class='ti ti-trending-down'></i>
-          <span>{{ variation | abs | toLocaleDecimal:'1.0-2' | async }}%</span>
+        <p class="mt-1 text-gray-400 font-medium flex items-center gap-0.5" [class.text-green-500]="pc.percent > 0" [class.text-red-500]="pc.percent < 0">
+          <i *ngIf="pc.percent > 0" class='ti ti-trending-up'></i>
+          <i *ngIf="pc.percent < 0" class='ti ti-trending-down'></i>
+          <span>{{ pc.percent | abs | toLocaleDecimal:'1.0-2' | async }}%</span>
         </p>
       </div>
       <p *ngIf="model.exchangeRate?.updatedAt as updatedAt" class="text-xs text-center mt-2 text-gray-600" [title]="updatedAt | dateTimeFromIso | dateTimeToFormat: 'F'">
