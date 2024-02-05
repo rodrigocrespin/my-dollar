@@ -12,10 +12,10 @@ import {
 import { BehaviorSubject, combineLatest, map, Observable } from 'rxjs';
 import { LanguageService } from '../../../../services/language.service';
 import { filter, startWith, switchMap } from 'rxjs/operators';
-import { HistoricalExchangeRate } from '../../../../models/exchange-rate';
-import { ExchangeRatesService } from '../../../../services/exchange-rates.service';
 import { TranslatePipe } from '@ngx-translate/core';
 import { DateTime } from 'luxon';
+import { ExchangePricesService } from '../../../../services/exchange-prices.service';
+import { HistoricalExchangePrice } from '../../../../models/exchange-price';
 
 interface ChartOptionsModel {
   series: ApexAxisChartSeries;
@@ -29,16 +29,9 @@ interface ChartOptionsModel {
   dataLabels: ApexDataLabels;
 }
 
-interface HistoricalExchangeRatesModel {
+interface HistoricalExchangePricesModel {
   chartOptions?: ChartOptionsModel;
   loading: boolean;
-}
-
-interface ChartExchangeRate {
-  buy: number;
-  mid: number;
-  sell: number;
-  date: string;
 }
 
 type RateKey = 'buy' | 'sell' | 'mid';
@@ -50,13 +43,13 @@ const RATE_LABEL = {
 };
 
 @Component({
-  selector: 'app-historical-exchange-rates-chart',
-  templateUrl: './historical-exchange-rates-chart.component.html',
-  styleUrls: ['./historical-exchange-rates-chart.component.scss'],
+  selector: 'app-historical-exchange-prices-card',
+  templateUrl: './historical-exchange-prices-card.component.html',
+  styleUrls: ['./historical-exchange-prices-card.component.scss'],
   providers: [TranslatePipe]
 })
-export class HistoricalExchangeRatesChartComponent {
-  model$: Observable<HistoricalExchangeRatesModel>;
+export class HistoricalExchangePricesCardComponent {
+  model$: Observable<HistoricalExchangePricesModel>;
   dataFrom = DateTime.utc().diff(DateTime.utc().minus({ month: 3 }));
 
   @Input() set currencyId(val: string) {
@@ -67,10 +60,10 @@ export class HistoricalExchangeRatesChartComponent {
   private selectedRateSubject = new BehaviorSubject<RateKey>(DEFAULT_RATE_KEY);
 
   constructor(languageService: LanguageService,
-              private exchangeRatesService: ExchangeRatesService,
+              private exchangePricesService: ExchangePricesService,
               private translatePipe: TranslatePipe) {
     const lang$ = languageService.language$;
-    const chartOptions$ = (items: ChartExchangeRate[]) => combineLatest([lang$, this.selectedRateSubject]).pipe(
+    const chartOptions$ = (items: (HistoricalExchangePrice & { mid: number })[]) => combineLatest([lang$, this.selectedRateSubject]).pipe(
       map(([lang, rateKey]) => {
         return {
           series: [
@@ -174,14 +167,14 @@ export class HistoricalExchangeRatesChartComponent {
       })
     );
 
-    const calculateMidPrice = (exchangeRate: HistoricalExchangeRate): number => {
-      return exchangeRate.buyPrice + ((exchangeRate.sellPrice - exchangeRate.buyPrice) / 2);
+    const calculateMidPrice = (price: HistoricalExchangePrice): number => {
+      return price.buy + ((price.sell - price.buy) / 2);
     };
 
     this.model$ = this.currencyIdSubject.pipe(
       filter(id => !!id),
-      switchMap(currencyId => this.exchangeRatesService.getHistorical(currencyId!).pipe(
-        map(items => items.map(x => ({ buy: x.buyPrice, sell: x.sellPrice, mid: calculateMidPrice(x), date: x.date })))
+      switchMap(currencyId => this.exchangePricesService.getHistorical(currencyId!).pipe(
+        map(items => items.map(x => ({ ...x, mid: calculateMidPrice(x) })))
       )),
       switchMap(items => chartOptions$(items)),
       map(chartOptions => ({ loading: false, chartOptions })),

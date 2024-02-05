@@ -2,16 +2,16 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { HomeComponent } from './components/home/home.component';
 import { MainRoutingModule } from './main-routing.module';
-import { ExchangeRateCardComponent } from './components/exchange-rate-card/exchange-rate-card.component';
+import { ExchangePriceCardComponent } from './components/exchange-price-card/exchange-price-card.component';
 import { SharedModule } from '../../shared/shared.module';
-import { HistoricalExchangeRatesChartComponent } from './components/historical-exchange-rates-chart/historical-exchange-rates-chart.component';
+import { HistoricalExchangePricesCardComponent } from './components/historical-exchange-prices-card/historical-exchange-prices-card.component';
 import { NgApexchartsModule } from 'ng-apexcharts';
 
 @NgModule({
   declarations: [
     HomeComponent,
-    ExchangeRateCardComponent,
-    HistoricalExchangeRatesChartComponent,
+    ExchangePriceCardComponent,
+    HistoricalExchangePricesCardComponent,
   ],
   imports: [
     CommonModule,

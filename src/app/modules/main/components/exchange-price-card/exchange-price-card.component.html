@@ -15,7 +15,7 @@
           <div *ngIf="model.loading" class="animate-pulse w-full">
             <div class="h-4 w-14 bg-gray-200 rounded-full dark:bg-gray-700"></div>
           </div>
-          <h3 *ngIf="model.exchangeRate?.buyPrice as buyPrice" class="text-2xl font-semibold text-inherit">
+          <h3 *ngIf="model.exchangePrice?.buy as buyPrice" class="text-2xl font-semibold text-inherit">
             ${{ buyPrice | toLocaleDecimal:'1.0-0' | async }}
           </h3>
         </div>
@@ -33,7 +33,7 @@
           <div *ngIf="model.loading" class="animate-pulse w-full">
             <div class="h-4 w-14 bg-gray-200 rounded-full dark:bg-gray-700"></div>
           </div>
-          <h3 *ngIf="model.exchangeRate?.sellPrice as sellPrice" class="text-2xl font-semibold text-inherit">
+          <h3 *ngIf="model.exchangePrice?.sell as sellPrice" class="text-2xl font-semibold text-inherit">
             ${{ sellPrice | toLocaleDecimal:'1.0-0' | async }}
           </h3>
         </div>
@@ -45,7 +45,7 @@
           <span>{{ pc.percent | abs | toLocaleDecimal:'1.0-2' | async }}%</span>
         </p>
       </div>
-      <p *ngIf="model.exchangeRate?.updatedAt as updatedAt" class="text-xs text-center mt-2 text-gray-600" [title]="updatedAt | dateTimeFromIso | dateTimeToFormat: 'F'">
+      <p *ngIf="model.exchangePrice?.updatedAt as updatedAt" class="text-xs text-center mt-2 text-gray-600" [title]="updatedAt | dateTimeFromIso | dateTimeToFormat: 'F'">
         <span translate>Updated</span> {{ updatedAt | dateTimeFromIso | dateTimeToRelative }}
       </p>
       <div *ngIf="model.loading" class="animate-pulse w-full mt-2 flex flex-col gap-2">

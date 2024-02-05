@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Observable } from 'rxjs';
-import { ExchangeRatesService } from 'src/app/services/exchange-rates.service';
+import { HealthCheckService } from '../../services/health-check.service';
 
 @Component({
   selector: 'app-exchange-rates-service-health-alert',
@@ -15,7 +15,7 @@ import { ExchangeRatesService } from 'src/app/services/exchange-rates.service';
 export class ExchangeRatesServiceHealthAlertComponent {
   isHealthy$: Observable<boolean>;
 
-  constructor(private exchangeRatesService: ExchangeRatesService) {
-    this.isHealthy$ = this.exchangeRatesService.isHealthy();
+  constructor(private healthCheckService: HealthCheckService) {
+    this.isHealthy$ = this.healthCheckService.isHealthy();
   }
 }

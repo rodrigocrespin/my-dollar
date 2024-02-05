@@ -1,4 +1,4 @@
 export const environment = {
   production: false,
-  apiUrl: 'https://currency-exchange-rates.azurewebsites.net',
+  apiUrl: 'http://localhost:7139',
 };
