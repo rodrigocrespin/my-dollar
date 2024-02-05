@@ -51,7 +51,11 @@ export class LanguageService {
   }
 
   setDefaultLanguage(): void {
-    this.useLang(DEFAULT_LANGUAGE);
+    const userDefaultLang = new Intl.Locale(navigator.language).language as Languages;
+    const lang = !!userDefaultLang && AVAILABLE_LANGUAGES.map(l => l.id).includes(userDefaultLang)
+      ? userDefaultLang
+      : DEFAULT_LANGUAGE;
+    this.useLang(lang);
   }
 
   setLanguage(lang: Languages): void {
