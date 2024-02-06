@@ -140,7 +140,7 @@ export class HistoricalExchangePricesCardComponent {
             axisBorder: {
               show: false,
             },
-            categories: items.map(x => x.date),
+            categories: items.map(x => DateTime.fromISO(x.date).toISODate()),
             labels: {
               format: 'd MMM',
               style: {
